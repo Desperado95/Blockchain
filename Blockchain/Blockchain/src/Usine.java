@@ -40,7 +40,7 @@ public class Usine {
 
        System.out.println( usine.liste_Machine.toString());
        System.out.println(usine.convertStringToSHA256(m1.toString()));
-
+        System.out.print("test pull");
     }
-
+// TEST THEO
 }
