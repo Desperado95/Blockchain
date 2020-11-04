@@ -29,6 +29,26 @@ public class Usine {
         return hex;
     }
 
+    /**
+     * Fonction d'affichage de la liste des Machines et de leurs clefs
+     */
+    public void afficherListeMachine(){
+        for(Map.Entry m : liste_Machine.entrySet())
+        {
+            System.out.print("Key : "+m.getKey() + m.getValue()+"\n\n");
+        }
+    }
+
+    /**
+     * Fonction d'affichage de la liste des Operateurs et de leurs clefs
+     */
+    public void afficherListeOP(){
+        for(Map.Entry m : liste_OP.entrySet())
+        {
+            System.out.print("Key : "+m.getKey() + m.getValue()+"\n\n");
+        }
+    }
+
     /** Main de test*/
     public static void main(String[] args) throws NoSuchAlgorithmException {
         Machine m1=new Machine(1,"mdpm1",true,true,true);
@@ -38,8 +58,12 @@ public class Usine {
         usine.liste_Machine.put(usine.convertStringToSHA256(m1.mdp),m1);
         usine.liste_Machine.put(usine.convertStringToSHA256(m2.mdp),m2);
 
+        usine.afficherListeMachine();
+        /*
        System.out.println( usine.liste_Machine.toString());
        System.out.println(usine.convertStringToSHA256(m1.toString()));
+       */
+
 
     }
 
