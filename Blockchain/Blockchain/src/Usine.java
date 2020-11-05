@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -49,7 +50,74 @@ public class Usine {
         }
     }
 
-    /** Main de test*/
+public int calculNbOperateurConnecte(){
+        int x=0;
+        //A FAIRE
+        return x;
+}
+
+public int calculNbOperateurVerificateur(){
+        int x=this.calculNbOperateurConnecte();
+        x=x/3;
+        if(x%2==0){
+            return x+1;
+        }
+        else{
+            return x;
+        }
+}
+
+    public int calculNbMachineConnecte(){
+        //FIABLE ET CONNECTE
+        int x=0;
+        //A FAIRE
+        return x;
+    }
+
+    public int calculNbMachineVerificateur(){
+        int x=this.calculNbMachineConnecte();
+        x=x/3;
+        if(x%2==0){
+            return x+1;
+        }
+        else{
+            return x;
+        }
+    }
+
+
+    /**
+     *
+     * @return tableau [Operateur]
+     */
+    public Operateur[] selectionnerOP(){
+        Operateur[] t = new Operateur[calculNbOperateurVerificateur()];
+        return t;
+    }
+
+    public Machine[] selectionnerMachine(){
+        Machine[] t = new Machine[10];
+        //Selectionner machines fiables
+        return t;
+    }
+
+    public boolean authentifier(Operateur op ){
+        return true;
+    }
+
+    public boolean authentifier(Machine m ){
+        return true;
+    }
+
+    public void ajouterBlock(){
+        // Trouver le dernier block, prendre son Hash, et le mettre en tant que "HashPrecedent" dans le constructeur du nouveau block
+
+        //ajouter le block àa la blockchain
+
+    }
+
+
+    /** Main de test
     public static void main(String[] args) throws NoSuchAlgorithmException {
         Machine m1=new Machine(1,"mdpm1",true,true,true);
         Machine m2=new Machine(2,"mdpm2",true,true,true);
@@ -62,9 +130,10 @@ public class Usine {
         /*
        System.out.println( usine.liste_Machine.toString());
        System.out.println(usine.convertStringToSHA256(m1.toString()));
+     }
        */
 
 
     }
 
-}
+

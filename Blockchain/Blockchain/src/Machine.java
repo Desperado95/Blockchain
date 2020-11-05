@@ -1,3 +1,5 @@
+import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
+
 public class Machine extends Noeud {
 
     int ID;
@@ -10,6 +12,7 @@ public class Machine extends Noeud {
     boolean checkVitesse;
     boolean checkConso;
     boolean checkForce;
+    boolean connecte;
 
     /**
      * Constructeur d'une Machine
@@ -27,6 +30,8 @@ public class Machine extends Noeud {
         this.checkConso = checkConso;
         this.checkForce = checkForce;
         this.degreFiabilite = (boolToInt(checkConso) + boolToInt(checkForce) + boolToInt(checkVitesse));
+
+        connecte=true;
     }
 
 
@@ -43,7 +48,7 @@ public class Machine extends Noeud {
      */
     @Override
     public String toString() {
-        String toReturn = "\nMachine: " + ID + "\nmdp: " + mdp + "\ncheckVitesse: " + checkVitesse + "\ncheckConso: " + checkConso + "\ncheckForce: " + checkForce + "\nFiabilite: " + degreFiabilite;
+        String toReturn = "\nMachine: " + ID + "\nmdp: " + mdp + "\ncheckVitesse: " + checkVitesse + "\ncheckConso: " + checkConso + "\ncheckForce: " + checkForce + "\netat: "+connecte+ "\nFiabilite: " + degreFiabilite;
         if (degreFiabilite == 3) {
             toReturn += " (FIABLE)";
         } else {
@@ -59,6 +64,27 @@ public class Machine extends Noeud {
         System.out.println(this.toString());
     }
 
+    /**
+     *
+     * @param t : transaction à verifier
+     * @return
+     */
+    public String verifierTransaction(Transaction t){
+        if(t.destinataire instanceof  Machine) {
+            if(((Machine) t.destinataire).degreFiabilite==3){
+                return "Valide";
+            }
+            else if(((Machine) t.destinataire).degreFiabilite>=1){
+                //Verification en fonction des données de la transaction
+                // Cas plausible
+            }
+            else{
+                return "Non Valide" ;
+            }
+        }
+        return "Pas de reponse";
+    }
+
 /**Main de test creation et affichate*/
 /*
     public static void main(String[] args){
@@ -69,5 +95,13 @@ public class Machine extends Noeud {
         f.afficher();
     }
 */
+
+/**
+ * A rajouter
+ *Fonction Data EnvoyerData(Noeud destinataire, String donnee)
+ *
+ *
+ */
+
 
 }

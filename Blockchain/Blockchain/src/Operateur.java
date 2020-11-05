@@ -1,3 +1,5 @@
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import java.util.Scanner;
 
 public class Operateur extends Noeud {
@@ -6,6 +8,7 @@ public class Operateur extends Noeud {
     String mdp;
     String nom, prenom;
     int nbBlocTraite;
+    Boolean connecte; // True = co / False = deco
 
     /**
      * Constructeur par defaut
@@ -21,6 +24,7 @@ public class Operateur extends Noeud {
         this.nom = nom;
         this.prenom = prenom;
         this.nbBlocTraite = 0;
+        this.connecte=false;
     }
 
     /**
@@ -37,6 +41,7 @@ public class Operateur extends Noeud {
         this.nom = nom;
         this.prenom = prenom;
         this.nbBlocTraite = nbBlocTraite;
+        this.connecte=false;
     }
 
     @Override
@@ -45,7 +50,8 @@ public class Operateur extends Noeud {
                 "\nmdp: " + mdp +
                 "\nnom: " + nom +
                 "\nprenom: " + prenom +
-                "\nnbBlocTraite: " + nbBlocTraite;
+                "\nnbBlocTraite: " + nbBlocTraite
+                +"\n"+connecte;
 
     }
 
@@ -77,6 +83,15 @@ public class Operateur extends Noeud {
         }
         return "pas de reponse";
     }
+
+    //Instruction DonnerInstruction(Machine n, String Instruction)
+  /**
+    public Instruction donnerInstruction(Machine m, String instruction){
+
+
+    }
+    */
+
 
 /** Main de test (definir toString pour Data et Instruction et ça marchera) */
 /*
