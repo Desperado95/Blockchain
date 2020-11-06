@@ -31,7 +31,7 @@ public class Machine extends Noeud {
         this.checkForce = checkForce;
         this.degreFiabilite = (boolToInt(checkConso) + boolToInt(checkForce) + boolToInt(checkVitesse));
 
-        connecte=true;
+        this.connecte=true;
     }
 
 
@@ -65,18 +65,14 @@ public class Machine extends Noeud {
     }
 
     /**
-     *
+     * Verifie un transaction machine -> machine contenant une data
      * @param t : transaction à verifier
      * @return
      */
     public String verifierTransaction(Transaction t){
         if(t.destinataire instanceof  Machine) {
-            if(((Machine) t.destinataire).degreFiabilite==3){
+            if(((Machine) t.emetteur).degreFiabilite>=1){
                 return "Valide";
-            }
-            else if(((Machine) t.destinataire).degreFiabilite>=1){
-                //Verification en fonction des données de la transaction
-                // Cas plausible
             }
             else{
                 return "Non Valide" ;
@@ -103,5 +99,10 @@ public class Machine extends Noeud {
  *
  */
 
+    Data EnvoyerData(Noeud destinataire,String donnee)
+    {
+        Data data = new Data(donnee,this,destinataire);
+        return data;
+    }
 
 }

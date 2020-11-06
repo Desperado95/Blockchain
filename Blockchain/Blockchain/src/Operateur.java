@@ -1,6 +1,8 @@
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
+import java.util.Random;
 import java.util.Scanner;
+import java.lang.Math;
 
 public class Operateur extends Noeud {
 
@@ -85,13 +87,26 @@ public class Operateur extends Noeud {
     }
 
     //Instruction DonnerInstruction(Machine n, String Instruction)
-  /**
+
+    /**
+     * Creer une Instruction afin de  traiter le cas Op -> machine
+     * @param m
+     * @param instruction
+     * @return
+     */
     public Instruction donnerInstruction(Machine m, String instruction){
-
-
+        Intruction instruct = new Instruction(this,m,instruction);
+        return instruct;
     }
-    */
 
+
+    public String creerInstruction()
+    {
+        Random random = new Random();
+        int rand = random.nextInt(6);
+        String[] listeInstruction = {"ACCELERE","RALENTI","AUGMENTE LA FORCE","DIMINUE LA FORCE","AUGMENTE LA CONSOMATION","DIMINUE LA CONSOMMATION"};
+        return listeInstruction[rand];
+    }
 
 /** Main de test (definir toString pour Data et Instruction et ça marchera) */
 /*
