@@ -1,5 +1,3 @@
-
-
 public class Machine extends Noeud {
 
     int ID;
@@ -31,7 +29,7 @@ public class Machine extends Noeud {
         this.checkForce = checkForce;
         this.degreFiabilite = (boolToInt(checkConso) + boolToInt(checkForce) + boolToInt(checkVitesse));
 
-        connecte=true;
+        this.connecte=true;
     }
 
 
@@ -65,18 +63,14 @@ public class Machine extends Noeud {
     }
 
     /**
-     *
+     * Verifie un transaction machine -> machine contenant une data
      * @param t : transaction à verifier
      * @return
      */
     public String verifierTransaction(Transaction t){
         if(t.destinataire instanceof  Machine) {
-            if(((Machine) t.destinataire).degreFiabilite==3){
+            if(((Machine) t.emetteur).degreFiabilite>=1){
                 return "Valide";
-            }
-            else if(((Machine) t.destinataire).degreFiabilite>=1){
-                //Verification en fonction des données de la transaction
-                // Cas plausible
             }
             else{
                 return "Non Valide" ;
@@ -90,18 +84,23 @@ public class Machine extends Noeud {
     public static void main(String[] args){
         Machine t = new Machine(1,"sdfsdf",true,true,true);
        t.afficher();
-
         Machine f= new Machine(2,"f trdfg htdf",false,true,false);
         f.afficher();
     }
 */
 
-/**
- * A rajouter
- *Fonction Data EnvoyerData(Noeud destinataire, String donnee)
- *
- *
- */
+    /**
+     * A rajouter
+     *Fonction Data EnvoyerData(Noeud destinataire, String donnee)
+     *
+     *
+     */
 
+    Data EnvoyerData(Noeud destinataire,String donnee)
+    {
+        Machine[] listeVerificateur = new Machine[10];
+        Data data = new Data(this, destinataire, donnee,listeVerificateur);
+        return data;
+    }
 
 }

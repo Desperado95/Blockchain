@@ -1,22 +1,36 @@
+/**
+ * @Author Erwann Forgez
+ */
 public class Instruction extends Transaction {
 
     String instruction;
     // Dans le constructeur degreImportance = MAX
     //Afficher
 
-
+/*
     public Instruction() {
         this.instruction = "";
         this.etat ="A verifier";
         this.degreImportance = 4;//true
     }
-
+*/
     public Instruction(String instruction,Noeud emet,Noeud dest) {
+        super(emet,dest);
         this.instruction = instruction;
         this.emetteur = emet;
         this.destinataire = dest;
         this.degreImportance = 4;//true
     }
+
+    public Instruction(Noeud emet,Noeud dest,String instruction) {
+        super(emet,dest);
+        this.instruction = instruction;
+        this.emetteur = emet;
+        this.destinataire = dest;
+        this.degreImportance = 4;//true
+    }
+
+
     /**
      * Valide la transaction si les verificateurs sont majoritaires
      * **/
@@ -24,11 +38,14 @@ public class Instruction extends Transaction {
         assert listeVerificateur.length == validation.length;//verififie que les tableaux font la même taille
         int lgt = validation.length;
         int val = 0;
+        int degreeMax=0;
         for(int i=0;i<lgt;i++)
         {
             if(validation[i]=="val")//val a modifier
             {
-                val++;
+                Machine verificateur = (Machine)listeVerificateur[i];
+                val += verificateur.degreFiabilite;
+                degreeMax += verificateur.degreFiabilite;
             }
         }
 
@@ -64,6 +81,6 @@ public class Instruction extends Transaction {
         Noeud[] verif = new Noeud[5];
 
        ist.afficher();
-       ist.verifierTransaction(,valid);
+       ist.verifierTransaction(verif,valid);
      }
 }
