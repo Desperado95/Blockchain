@@ -1,4 +1,4 @@
-
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 public abstract class Transaction {
 
@@ -15,7 +15,7 @@ public abstract class Transaction {
 
     }
 
-    void verifierTransaction(Noeud[] listeVerificateur,String[] validation) {
+    void verifierTransaction(Noeud[] listeVerificateur, String[] validation) {
 
     }
 
