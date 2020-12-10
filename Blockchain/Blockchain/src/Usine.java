@@ -87,7 +87,7 @@ public int calculNbOperateurVerificateur(){
 
 
     /**
-     *
+     *Construction du tableau des verificateurs
      * @return tableau [Operateur]
      */
     public Operateur[] selectionnerOP(){
@@ -101,6 +101,11 @@ public int calculNbOperateurVerificateur(){
         return t;
     }
 
+    /**
+     *  Verifier si le mdp hashé de l'op/m est bien celui qui est bien sa clef dans la liste
+     * @param op
+     * @return
+     */
     public boolean authentifier(Operateur op ){
         return true;
     }
