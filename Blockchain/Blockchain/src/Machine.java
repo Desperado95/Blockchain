@@ -96,10 +96,9 @@ public class Machine extends Noeud {
      *
      */
 
-    Data EnvoyerData(Noeud destinataire,String donnee)
+    Data EnvoyerData(Noeud destinataire,String donnee,Machine[] listeVerificateur)
     {
-
-        Data data = new Data(donnee,this,destinataire);
+        Data data = new Data(this,destinataire,donnee, listeVerificateur);
         return data;
     }
 

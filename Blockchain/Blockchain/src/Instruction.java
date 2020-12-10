@@ -3,16 +3,11 @@
  */
 public class Instruction extends Transaction {
 
-    String instruction;
+    private final String instruction;
     // Dans le constructeur degreeImportance = MAX
     //Afficher
-
 /*
-    public Instruction() {
-        this.instruction = "";
-        this.etat ="A verifier";
-        this.degreImportance = 4;//true
-    }
+
 */
     public Instruction(String instruction,Noeud emet,Noeud dest) {
         super(emet,dest);
@@ -29,6 +24,14 @@ public class Instruction extends Transaction {
         this.destinataire = dest;
         this.degreImportance = 4;//true
     }
+
+    public String getInstruction() {
+        return instruction;
+    }
+
+//Operateur -> machine operateur verificateur
+//Machine -> Operateur X
+//Machine -> Machine Machine verificateur
 
     String[] valider(Noeud[] listeVerificateur){
         int nbV = listeVerificateur.length;
@@ -88,13 +91,13 @@ public class Instruction extends Transaction {
     public static void main(String[] args) {
 
         Noeud emet = new Operateur(1,"mdp","Nom","Prenom");
-        Noeud dest = new Machine(2,"mdp",false,false,false);
+        Noeud dest = new Machine(2,"mdp",true,true,true);
 
         Instruction ist = new Instruction("Accelere ",emet,dest);
 
-        Noeud verif1 = new Machine(1,"mdp",false,false,false);
-        Noeud verif2 = new Machine(3,"mdp",false,false,false);
-        Noeud verif3 = new Machine(4,"mdp",false,false,false);
+        Noeud verif1 = new Machine(3,"mdp",true,true,true);
+        Noeud verif2 = new Machine(4,"mdp",true,true,true);
+        Noeud verif3 = new Machine(5,"mdp",false,false,false);
         Noeud[] listeVerif={verif1,verif2, verif3};
 
        ist.afficher();
@@ -103,4 +106,5 @@ public class Instruction extends Transaction {
        System.out.println(ist.etat);
 
      }
+
 }

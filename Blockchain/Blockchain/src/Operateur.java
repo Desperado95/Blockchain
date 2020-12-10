@@ -1,5 +1,5 @@
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
+//import com.sun.org.apache.xpath.internal.operations.Bool;
 
 
 import java.util.Random;
@@ -98,7 +98,7 @@ public class Operateur extends Noeud {
      */
     public Instruction donnerInstruction(Machine m, String instruction){
 
-        Intruction instruct = new Instruction(this,m,instruction);
+        Instruction instruct = new Instruction(this,m,instruction);
 
         return instruct;
     }

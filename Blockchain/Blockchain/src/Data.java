@@ -53,7 +53,7 @@ public class Data extends Transaction {
         } else {
             etat = "Non Valide";
         }
-
+    }
 
 
     /**
