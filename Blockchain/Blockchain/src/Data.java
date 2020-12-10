@@ -53,7 +53,8 @@ public class Data extends Transaction {
         } else {
             etat = "Non Valide";
         }
-    }
+
+
 
     /**
      * @return string contenant le verificateur et leurs réponses

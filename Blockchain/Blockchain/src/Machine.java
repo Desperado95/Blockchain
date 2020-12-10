@@ -1,5 +1,3 @@
-import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
-
 public class Machine extends Noeud {
 
     int ID;
@@ -86,21 +84,21 @@ public class Machine extends Noeud {
     public static void main(String[] args){
         Machine t = new Machine(1,"sdfsdf",true,true,true);
        t.afficher();
-
         Machine f= new Machine(2,"f trdfg htdf",false,true,false);
         f.afficher();
     }
 */
 
-/**
- * A rajouter
- *Fonction Data EnvoyerData(Noeud destinataire, String donnee)
- *
- *
- */
+    /**
+     * A rajouter
+     *Fonction Data EnvoyerData(Noeud destinataire, String donnee)
+     *
+     *
+     */
 
     Data EnvoyerData(Noeud destinataire,String donnee)
     {
+
         Data data = new Data(donnee,this,destinataire);
         return data;
     }

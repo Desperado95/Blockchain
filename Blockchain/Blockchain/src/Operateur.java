@@ -1,4 +1,6 @@
+
 import com.sun.org.apache.xpath.internal.operations.Bool;
+
 
 import java.util.Random;
 import java.util.Scanner;
@@ -95,7 +97,9 @@ public class Operateur extends Noeud {
      * @return
      */
     public Instruction donnerInstruction(Machine m, String instruction){
+
         Intruction instruct = new Instruction(this,m,instruction);
+
         return instruct;
     }
 
@@ -114,7 +118,6 @@ public class Operateur extends Noeud {
     Operateur op = new Operateur(1,"dsfsd","Handerson","David");
     Data t = new Data();
     System.out.println(op.demanderValidation(t));
-
     }
 */
 }
