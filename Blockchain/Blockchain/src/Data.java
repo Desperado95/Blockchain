@@ -40,7 +40,6 @@ public class Data extends Transaction {
     /**
      * Fonction qui demande la validation ou non de la data et met à jour son état selon la majorité
      */
-
     void verifierTransaction() {
         int cpt = 0;
         for (int i = 0; i < listeVerificateur.length; i++) {
@@ -54,10 +53,11 @@ public class Data extends Transaction {
         } else {
             etat = "Non Valide";
         }
-    }
+
+
 
     /**
-     * @return sting contenant le verificateur et leurs réponses
+     * @return string contenant le verificateur et leurs réponses
      */
     public String getVerificateur() {
         String result = " [ ";
@@ -80,10 +80,10 @@ public class Data extends Transaction {
                 '}' + "\n Liste verificateurs :" + this.getVerificateur() + "\n\n ------------";
     }
 
-    /*
+
     public static void main(String[] args){
      Machine m1 = new Machine(1,"mdp",true,true,true);
-     Machine m2 = new Machine(2,"mdp2",true,true,true);
+     Machine m2 = new Machine(2,"mdp2",false,false,true);
      Machine[] listeMachine=new Machine[2];
      listeMachine[0]=m1;
          listeMachine[1]=m2;
@@ -92,5 +92,5 @@ public class Data extends Transaction {
          System.out.println(d.etat);
         System.out.println(d.toString());
      }
-*/
+
 }

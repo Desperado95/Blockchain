@@ -98,8 +98,8 @@ public class Machine extends Noeud {
 
     Data EnvoyerData(Noeud destinataire,String donnee)
     {
-        Machine[] listeVerificateur = new Machine[10];
-        Data data = new Data(this, destinataire, donnee,listeVerificateur);
+
+        Data data = new Data(donnee,this,destinataire);
         return data;
     }
 

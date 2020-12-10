@@ -1,3 +1,7 @@
+
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
+
 import java.util.Random;
 import java.util.Scanner;
 import java.lang.Math;
@@ -74,9 +78,9 @@ public class Operateur extends Noeud {
             Scanner sc = new Scanner(System.in);
             reponse = sc.nextLine();
             if (reponse.equals("y") || reponse.equals("Y")) {
-                return "valide";
+                return "Valide";
             } else if (reponse.equals("n") || reponse.equals("N")) {
-                return "non valide";
+                return "Non Valide";
             } else {
                 System.out.println("Reponse non conforme. Essayez encore : "+reponse);
             }
@@ -93,7 +97,9 @@ public class Operateur extends Noeud {
      * @return
      */
     public Instruction donnerInstruction(Machine m, String instruction){
-        Instruction instruct = new Instruction(this,m,instruction);
+
+        Intruction instruct = new Instruction(this,m,instruction);
+
         return instruct;
     }
 
