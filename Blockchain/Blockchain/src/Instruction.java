@@ -1,10 +1,10 @@
 /**
- * @Author Erwann Forgez
+ * @author  Erwann Forgez
  */
 public class Instruction extends Transaction {
 
     String instruction;
-    // Dans le constructeur degreImportance = MAX
+    // Dans le constructeur degreeImportance = MAX
     //Afficher
 
 /*
@@ -30,9 +30,22 @@ public class Instruction extends Transaction {
         this.degreImportance = 4;//true
     }
 
+    String[] valider(Noeud[] listeVerificateur){
+        int nbV = listeVerificateur.length;
+        int n=0;
+        String[] val =new String[nbV];
+        for( Noeud m : listeVerificateur){
+            if(m instanceof Machine){
+                val[n]=((Machine) m).verifierTransaction(this);
+                n++;
+            }
+        }
+        return val;
+    }
 
     /**
      * Valide la transaction si les verificateurs sont majoritaires
+     * @param listeVerificateur liste des objets verifiants la transaction
      * **/
     void verifierTransaction(Noeud[] listeVerificateur, String[] validation) {
         assert listeVerificateur.length == validation.length;//verififie que les tableaux font la même taille
@@ -41,7 +54,7 @@ public class Instruction extends Transaction {
         int degreeMax=0;
         for(int i=0;i<lgt;i++)
         {
-            if(validation[i]=="val")//val a modifier
+            if(validation[i].equals("val"))//val a modifier
             {
                 Machine verificateur = (Machine)listeVerificateur[i];
                 val += verificateur.degreFiabilite;
@@ -49,7 +62,7 @@ public class Instruction extends Transaction {
             }
         }
 
-            if(val > lgt/2)
+            if(val > degreeMax/2)
                 this.etat="Valide";
             else
                 this.etat="Non Valide";
@@ -65,10 +78,10 @@ public class Instruction extends Transaction {
     }
 
     public void afficher(){
-        System.out.println("");
+        System.out.println();
         System.out.println("Instruction : " + instruction);
         System.out.println(emetteur.toString() + "\n"+" -> " + destinataire.toString());
-        System.out.println("");
+        System.out.println();
 
     }
 
@@ -76,11 +89,18 @@ public class Instruction extends Transaction {
 
         Noeud emet = new Operateur(1,"mdp","Nom","Prenom");
         Noeud dest = new Machine(2,"mdp",false,false,false);
+
         Instruction ist = new Instruction("Accelere ",emet,dest);
-        String[] valid = {"","","","",""};
-        Noeud[] verif = new Noeud[5];
+
+        Noeud verif1 = new Machine(1,"mdp",false,false,false);
+        Noeud verif2 = new Machine(3,"mdp",false,false,false);
+        Noeud verif3 = new Machine(4,"mdp",false,false,false);
+        Noeud[] listeVerif={verif1,verif2, verif3};
 
        ist.afficher();
-       ist.verifierTransaction(verif,valid);
+       String[] valid = ist.valider(listeVerif);
+       ist.verifierTransaction(listeVerif,valid);
+       System.out.println(ist.etat);
+
      }
 }
