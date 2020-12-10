@@ -76,9 +76,9 @@ public class Operateur extends Noeud {
             Scanner sc = new Scanner(System.in);
             reponse = sc.nextLine();
             if (reponse.equals("y") || reponse.equals("Y")) {
-                return "valide";
+                return "Valide";
             } else if (reponse.equals("n") || reponse.equals("N")) {
-                return "non valide";
+                return "Non Valide";
             } else {
                 System.out.println("Reponse non conforme. Essayez encore : "+reponse);
             }
