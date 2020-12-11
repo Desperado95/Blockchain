@@ -3,6 +3,10 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * @author Théo
+ */
+
 public class Block {
 
     //Liste des transactions VALIDEES au préalable

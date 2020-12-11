@@ -4,7 +4,9 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
-
+/**
+ * @author Mathilde, Erwann, Théo
+ */
 public class Usine {
 
     ArrayList<Block> blockchain;

@@ -1,3 +1,7 @@
+/**
+ * @author Erwann
+ */
+
 public abstract class Transaction {
 
     String etat; // Valide / Non Valide / A verifier

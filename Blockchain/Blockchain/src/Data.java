@@ -1,3 +1,7 @@
+/**
+ * @author Théo
+ */
+
 public class Data extends Transaction {
 
     String donnee;

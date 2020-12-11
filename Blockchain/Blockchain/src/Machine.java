@@ -1,3 +1,7 @@
+/**
+ * @author Mathilde
+ */
+
 public class Machine extends Noeud {
 
     int ID;
