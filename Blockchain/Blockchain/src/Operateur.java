@@ -14,6 +14,10 @@ public class Operateur extends Noeud {
     int nbBlocTraite;
     Boolean connecte; // True = co / False = deco
 
+    public int getNbBlocTraite() {
+        return nbBlocTraite;
+    }
+
     /**
      * Constructeur par defaut
      * int id : identifiant ou numéro
@@ -55,7 +59,7 @@ public class Operateur extends Noeud {
                 "\nnom: " + nom +
                 "\nprenom: " + prenom +
                 "\nnbBlocTraite: " + nbBlocTraite
-                +"\n"+connecte;
+                +"\nConnecte : "+connecte;
 
     }
 
@@ -73,18 +77,21 @@ public class Operateur extends Noeud {
     public String demanderValidation(Transaction t) {
         String reponse = "pas de reponse";
         while (reponse != "Y" || reponse != "y" || reponse != "n" || reponse != "N") {
-            System.out.println("Validez-vous la transaction t ? : "+toString());
+            System.out.println("Validez-vous la transaction t ? : "+ "Operateur : " + prenom + nom );
             System.out.println("Yes : Y / No : N  :");
             Scanner sc = new Scanner(System.in);
             reponse = sc.nextLine();
             if (reponse.equals("y") || reponse.equals("Y")) {
+
                 return "Valide";
             } else if (reponse.equals("n") || reponse.equals("N")) {
+
                 return "Non Valide";
             } else {
                 System.out.println("Reponse non conforme. Essayez encore : "+reponse);
             }
         }
+        nbBlocTraite--;
         return "pas de reponse";
     }
 
@@ -96,9 +103,9 @@ public class Operateur extends Noeud {
      * @param instruction
      * @return
      */
-    public Instruction donnerInstruction(Machine m, String instruction){
+    public Instruction donnerInstruction(Machine m, String instruction, Noeud[] listeVerificateur){
 
-        Instruction instruct = new Instruction(this,m,instruction);
+        Instruction instruct = new Instruction(this,m,instruction, listeVerificateur);
 
         return instruct;
     }

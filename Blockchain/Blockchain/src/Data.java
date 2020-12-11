@@ -8,9 +8,9 @@ public class Data extends Transaction {
 
 
     public Data(Machine emetteur, Noeud destinataire, String donnee, Machine[] listeVerificateur) {
-        super(emetteur, destinataire);
+        super(emetteur, destinataire,listeVerificateur);
         this.donnee = donnee;
-        this.listeVerificateur = listeVerificateur;
+        this.listeVerificateur=listeVerificateur;
         reponseVerificateur = new String[listeVerificateur.length];
         initialiserReponsesVerificateur(); // met les reponses à "A valider"
 
@@ -56,6 +56,24 @@ public class Data extends Transaction {
     }
 
 
+    /**
+     * Fonction qui demande la validation ou non de la data et met à jour son état selon la majorité
+     */
+    void verifierTransaction(Machine[] listeVerificateur,String[] reponseVerificateur) {
+        int cpt = 0;
+        for (int i = 0; i < listeVerificateur.length; i++) {
+            if(listeVerificateur[i] instanceof Machine)
+            reponseVerificateur[i] = listeVerificateur[i].verifierTransaction(this);
+            if (reponseVerificateur[i].equals("Valide")) {
+                cpt++;
+            }
+        }
+        if (cpt > (listeVerificateur.length / 2)) {
+            etat = "Valide";
+        } else {
+            etat = "Non Valide";
+        }
+    }
     /**
      * @return string contenant le verificateur et leurs réponses
      */

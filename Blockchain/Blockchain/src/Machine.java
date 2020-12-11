@@ -68,15 +68,12 @@ public class Machine extends Noeud {
      * @return
      */
     public String verifierTransaction(Transaction t){
-        if(t.destinataire instanceof  Machine) {
-            if(((Machine) t.emetteur).degreFiabilite>=1){
+            if(((Machine) t.emetteur).degreFiabilite>=2){
                 return "Valide";
             }
-            else{
-                return "Non Valide" ;
+            else {
+                return "Non Valide";
             }
-        }
-        return "Pas de reponse";
     }
 
 /**Main de test creation et affichate*/

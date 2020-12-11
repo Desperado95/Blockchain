@@ -9,16 +9,16 @@ public class Block {
     Transaction[] listeTransaction;
     String hashPrecedent;
     String hashPresent;
-    static int id; //(Attribut partagé entre tout les blocks pour la numérotation)
+     static int num=0; //(Attribut partagé entre tout les blocks pour la numérotation)
+    int id;
 
-
-    public Block(String hashPrecedent) {
+    public Block(String hashPrecedent,int taille) {
         //3 transactions/block
-        this.listeTransaction = new Transaction[3];
+        this.listeTransaction = new Transaction[taille];
 
         //recupere via le dernier id de la liste de block dans l'usine
         this.hashPrecedent = hashPrecedent;
-        id++;
+        id=num++;
     }
 
     public String convertStringToSHA256(String s) throws NoSuchAlgorithmException {
@@ -33,16 +33,13 @@ public class Block {
      * @param t : transaction à ajouter
      * @return true si la transaction à pu être ajoutée, sinon false (déjà pleine ou t non valide ou Bloc cloturé)
      */
-    public boolean ajouterTransaction(Transaction t) throws NoSuchAlgorithmException {
+    public boolean ajouterTransaction(Transaction t) {
         // On verifie que le hash est null, sinon cela veut dire que le bloc est censé être fermé
         if (this.hashPresent == null) {
             if (t.etat.equals("Valide")) {
                 for (int i = 0; i < listeTransaction.length; i++) {
                     if (listeTransaction[i] == null) {
                         listeTransaction[i] = t;
-                        if(i==9){
-                            this.genererHash();
-                        }
                         return true;
                     }
                 }
@@ -58,7 +55,7 @@ public class Block {
         String res = "Id Block: " + id +
                 "\nTransactions : \n";
         int i = 0;
-        while (listeTransaction[i] != null && i < listeTransaction.length) {
+        while (listeTransaction[i] != null && i < listeTransaction.length-1) {
             res += listeTransaction[i].toString();
             i++;
         }
@@ -75,7 +72,7 @@ public class Block {
 
 
     public static void main(String[] args) throws NoSuchAlgorithmException {
-        Block b = new Block("none");
+        Block b = new Block("none",3);
         Machine m1 = new Machine(1,"mdp",true,true,true);
         Machine m2 = new Machine(2,"mdp2",true,true,true);
         Machine[] listeMachine=new Machine[2];
