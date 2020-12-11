@@ -4,17 +4,20 @@
 
 public class Data extends Transaction {
 
-    String donnee;
-    int degreImportance; //à determiner via les enumérations MotsImportants
-    int nbVerificateur;
-    Machine[] listeVerificateur;
-    String[] reponseVerificateur;
+    private String donnee;
+    private int degreImportance; //à determiner via les enumérations MotsImportants
+    private int nbVerificateur;
+    private Machine[] listeVerificateur;
+    private String[] reponseVerificateur;
 
 
+    /**
+     * Constructeur Data
+     */
     public Data(Machine emetteur, Noeud destinataire, String donnee, Machine[] listeVerificateur) {
-        super(emetteur, destinataire,listeVerificateur);
+        super(emetteur, destinataire, listeVerificateur);
         this.donnee = donnee;
-        this.listeVerificateur=listeVerificateur;
+        this.listeVerificateur = listeVerificateur;
         reponseVerificateur = new String[listeVerificateur.length];
         initialiserReponsesVerificateur(); // met les reponses à "A valider"
 
@@ -53,38 +56,38 @@ public class Data extends Transaction {
             }
         }
         if (cpt > (listeVerificateur.length / 2)) {
-            etat = "Valide";
+            setEtat("Valide");
         } else {
-            etat = "Non Valide";
+            setEtat("Non Valide");
         }
     }
-
 
     /**
      * Fonction qui demande la validation ou non de la data et met à jour son état selon la majorité
      */
-    void verifierTransaction(Machine[] listeVerificateur,String[] reponseVerificateur) {
+    void verifierTransaction(Machine[] listeVerificateur, String[] reponseVerificateur) {
         int cpt = 0;
         for (int i = 0; i < listeVerificateur.length; i++) {
-            if(listeVerificateur[i] instanceof Machine)
-            reponseVerificateur[i] = listeVerificateur[i].verifierTransaction(this);
+            if (listeVerificateur[i] instanceof Machine)
+                reponseVerificateur[i] = listeVerificateur[i].verifierTransaction(this);
             if (reponseVerificateur[i].equals("Valide")) {
                 cpt++;
             }
         }
         if (cpt > (listeVerificateur.length / 2)) {
-            etat = "Valide";
+            setEtat("Valide");
         } else {
-            etat = "Non Valide";
+            setEtat("Non Valide");
         }
     }
+
     /**
      * @return string contenant le verificateur et leurs réponses
      */
     public String getVerificateur() {
         String result = " [ ";
         for (int i = 0; i < listeVerificateur.length; i++) {
-            result += listeVerificateur[i].ID + " : " + reponseVerificateur[i] + " ; ";
+            result += listeVerificateur[i].getID() + " : " + reponseVerificateur[i] + " ; ";
         }
         result += " ] ";
         return result;
@@ -96,23 +99,55 @@ public class Data extends Transaction {
                 "donnee='" + donnee + '\'' +
                 ", degreImportance=" + degreImportance +
                 ", nbVerificateur=" + nbVerificateur +
-                ", etat='" + etat + '\'' +
-                ",\n\n emetteur= " + emetteur +
-                ",\n\n destinataire=" + destinataire +
+                ", etat='" + getEtat() + '\'' +
+                ",\n\n emetteur= " + getEmetteur() +
+                ",\n\n destinataire=" + getDestinataire() +
                 '}' + "\n Liste verificateurs :" + this.getVerificateur() + "\n\n ------------";
     }
 
 
-    public static void main(String[] args){
-     Machine m1 = new Machine(1,"mdp",true,true,true);
-     Machine m2 = new Machine(2,"mdp2",false,false,true);
-     Machine[] listeMachine=new Machine[2];
-     listeMachine[0]=m1;
-         listeMachine[1]=m2;
-     Data d = new Data(m1,m2,"a detecte une PANNE",listeMachine);// contient "PANNE" donc degreImportance = 3
-         d.verifierTransaction();
-         System.out.println(d.etat);
-        System.out.println(d.toString());
-     }
+    /**
+     * Getter
+     * Setter
+     */
 
+    public String getDonnee() {
+        return donnee;
+    }
+
+    public void setDonnee(String donnee) {
+        this.donnee = donnee;
+    }
+
+    public int getDegreImportance() {
+        return degreImportance;
+    }
+
+    public void setDegreImportance(int degreImportance) {
+        this.degreImportance = degreImportance;
+    }
+
+    public int getNbVerificateur() {
+        return nbVerificateur;
+    }
+
+    public Machine[] getListeVerificateur() {
+        return listeVerificateur;
+    }
+
+    public String[] getReponseVerificateur() {
+        return reponseVerificateur;
+    }
+
+    public void setReponseVerificateur(String[] reponseVerificateur) {
+        this.reponseVerificateur = reponseVerificateur;
+    }
+
+    public void setListeVerificateur(Machine[] listeVerificateur) {
+        this.listeVerificateur = listeVerificateur;
+    }
+
+    public void setNbVerificateur(int nbVerificateur) {
+        this.nbVerificateur = nbVerificateur;
+    }
 }

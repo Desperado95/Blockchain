@@ -1,4 +1,4 @@
 public enum MotsImportants {
-    URGENT,PANNE,CRITIQUE,MANQUE
+    URGENT, PANNE, CRITIQUE, MANQUE
 
 }

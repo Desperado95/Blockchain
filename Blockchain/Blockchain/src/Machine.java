@@ -4,17 +4,17 @@
 
 public class Machine extends Noeud {
 
-    int ID;
-    String mdp;
+    private int ID;
+    private String mdp;
 
-    int degreFiabilite;
+    private int degreFiabilite;
     /**
      * Variables de verifications
      */
-    boolean checkVitesse;
-    boolean checkConso;
-    boolean checkForce;
-    boolean connecte;
+    private boolean checkVitesse;
+    private boolean checkConso;
+    private boolean checkForce;
+    private boolean connecte;
 
     /**
      * Constructeur d'une Machine
@@ -33,7 +33,7 @@ public class Machine extends Noeud {
         this.checkForce = checkForce;
         this.degreFiabilite = (boolToInt(checkConso) + boolToInt(checkForce) + boolToInt(checkVitesse));
 
-        this.connecte=true;
+        this.connecte = true;
     }
 
 
@@ -50,7 +50,7 @@ public class Machine extends Noeud {
      */
     @Override
     public String toString() {
-        String toReturn = "\nMachine: " + ID + "\nmdp: " + mdp + "\ncheckVitesse: " + checkVitesse + "\ncheckConso: " + checkConso + "\ncheckForce: " + checkForce + "\netat: "+connecte+ "\nFiabilite: " + degreFiabilite;
+        String toReturn = "\nMachine: " + ID + "\nmdp: " + mdp + "\ncheckVitesse: " + checkVitesse + "\ncheckConso: " + checkConso + "\ncheckForce: " + checkForce + "\netat: " + connecte + "\nFiabilite: " + degreFiabilite;
         if (degreFiabilite == 3) {
             toReturn += " (FIABLE)";
         } else {
@@ -68,39 +68,87 @@ public class Machine extends Noeud {
 
     /**
      * Verifie un transaction machine -> machine contenant une data
+     *
      * @param t : transaction à verifier
      * @return
      */
-    public String verifierTransaction(Transaction t){
-            if(((Machine) t.emetteur).degreFiabilite>=2){
-                return "Valide";
-            }
-            else {
-                return "Non Valide";
-            }
+    public String verifierTransaction(Transaction t) {
+        if (((Machine) t.getEmetteur()).degreFiabilite >= 2) {
+            return "Valide";
+        } else {
+            return "Non Valide";
+        }
     }
 
-/**Main de test creation et affichate*/
-/*
-    public static void main(String[] args){
-        Machine t = new Machine(1,"sdfsdf",true,true,true);
-       t.afficher();
-        Machine f= new Machine(2,"f trdfg htdf",false,true,false);
-        f.afficher();
-    }
-*/
 
     /**
      * A rajouter
-     *Fonction Data EnvoyerData(Noeud destinataire, String donnee)
-     *
-     *
+     * Fonction Data EnvoyerData(Noeud destinataire, String donnee)
      */
 
-    Data EnvoyerData(Noeud destinataire,String donnee,Machine[] listeVerificateur)
-    {
-        Data data = new Data(this,destinataire,donnee, listeVerificateur);
+    Data EnvoyerData(Noeud destinataire, String donnee, Machine[] listeVerificateur) {
+        Data data = new Data(this, destinataire, donnee, listeVerificateur);
         return data;
     }
 
+    /**
+     * Getter
+     * Setter
+     */
+
+    public int getID() {
+        return ID;
+    }
+
+    public String getMdp() {
+        return mdp;
+    }
+
+    public int getDegreFiabilite() {
+        return degreFiabilite;
+    }
+
+    public boolean isCheckVitesse() {
+        return checkVitesse;
+    }
+
+    public boolean isCheckConso() {
+        return checkConso;
+    }
+
+    public boolean isCheckForce() {
+        return checkForce;
+    }
+
+    public boolean isConnecte() {
+        return connecte;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
+    }
+
+    public void setDegreFiabilite(int degreFiabilite) {
+        this.degreFiabilite = degreFiabilite;
+    }
+
+    public void setCheckVitesse(boolean checkVitesse) {
+        this.checkVitesse = checkVitesse;
+    }
+
+    public void setCheckConso(boolean checkConso) {
+        this.checkConso = checkConso;
+    }
+
+    public void setCheckForce(boolean checkForce) {
+        this.checkForce = checkForce;
+    }
+
+    public void setConnecte(boolean connecte) {
+        this.connecte = connecte;
+    }
 }
