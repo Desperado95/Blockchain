@@ -10,19 +10,19 @@ import java.security.NoSuchAlgorithmException;
 public class Block {
 
     //Liste des transactions VALIDEES au préalable
-    Transaction[] listeTransaction;
-    String hashPrecedent;
-    String hashPresent;
-     static int num=0; //(Attribut partagé entre tout les blocks pour la numérotation)
-    int id;
+    private Transaction[] listeTransaction;
+    private String hashPrecedent;
+    private String hashPresent;
+    private static int num = 0; //(Attribut partagé entre tout les blocks pour la numérotation)
+    private int id;
 
-    public Block(String hashPrecedent,int taille) {
+    public Block(String hashPrecedent, int taille) {
         //3 transactions/block
         this.listeTransaction = new Transaction[taille];
 
         //recupere via le dernier id de la liste de block dans l'usine
         this.hashPrecedent = hashPrecedent;
-        id=num++;
+        id = num++;
     }
 
     public String convertStringToSHA256(String s) throws NoSuchAlgorithmException {
@@ -40,7 +40,7 @@ public class Block {
     public boolean ajouterTransaction(Transaction t) {
         // On verifie que le hash est null, sinon cela veut dire que le bloc est censé être fermé
         if (this.hashPresent == null) {
-            if (t.etat.equals("Valide")) {
+            if (t.getEtat().equals("Valide")) {
                 for (int i = 0; i < listeTransaction.length; i++) {
                     if (listeTransaction[i] == null) {
                         listeTransaction[i] = t;
@@ -59,7 +59,7 @@ public class Block {
         String res = "Id Block: " + id +
                 "\nTransactions : \n";
         int i = 0;
-        while (listeTransaction[i] != null && i < listeTransaction.length-1) {
+        while (listeTransaction[i] != null && i < listeTransaction.length - 1) {
             res += listeTransaction[i].toString();
             i++;
         }
@@ -76,19 +76,61 @@ public class Block {
 
 
     public static void main(String[] args) throws NoSuchAlgorithmException {
-        Block b = new Block("none",3);
-        Machine m1 = new Machine(1,"mdp",true,true,true);
-        Machine m2 = new Machine(2,"mdp2",true,true,true);
-        Machine[] listeMachine=new Machine[2];
-        listeMachine[0]=m1;
-        listeMachine[1]=m2;
-        Data d = new Data(m1,m2,"a detecte une PANNE",listeMachine);
+        Block b = new Block("none", 3);
+        Machine m1 = new Machine(1, "mdp", true, true, true);
+        Machine m2 = new Machine(2, "mdp2", true, true, true);
+        Machine[] listeMachine = new Machine[2];
+        listeMachine[0] = m1;
+        listeMachine[1] = m2;
+        Data d = new Data(m1, m2, "a detecte une PANNE", listeMachine);
         d.verifierTransaction();
-        System.out.println("ajout d :"+b.ajouterTransaction(d));
+        System.out.println("ajout d :" + b.ajouterTransaction(d));
         //System.out.println(b.toString());
         b.genererHash();
         System.out.println(b.hashPresent);
     }
 
+    /**
+     * Getter
+     * Setter
+     */
+    public Transaction[] getListeTransaction() {
+        return listeTransaction;
+    }
 
+    public void setListeTransaction(Transaction[] listeTransaction) {
+        this.listeTransaction = listeTransaction;
+    }
+
+    public String getHashPrecedent() {
+        return hashPrecedent;
+    }
+
+    public void setHashPrecedent(String hashPrecedent) {
+        this.hashPrecedent = hashPrecedent;
+    }
+
+    public String getHashPresent() {
+        return hashPresent;
+    }
+
+    public void setHashPresent(String hashPresent) {
+        this.hashPresent = hashPresent;
+    }
+
+    public static int getNum() {
+        return num;
+    }
+
+    public static void setNum(int num) {
+        Block.num = num;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
