@@ -29,24 +29,26 @@ public class Instruction extends Transaction {
      * Machine -> Machine Machine verificateur
      */
     void verifierTransaction() {
-        int nbV = getListeVerificateur().length;
+        int nbV = listeVerificateur.length;
         int n = 0;
         int cpt = 0;
+        //On crée un tableau de même taille que la liste de verificateur
         String[] val = new String[nbV];
-        for (Noeud op : getListeVerificateur()) {
+        for (Noeud op : listeVerificateur) {
             if (op instanceof Operateur) {
+                //Demande à chaque operateur de vérifier
                 val[n] = ((Operateur) op).demanderValidation(this);
+                //Si l'operateur a validé on incremente le compteur de validé
                 if (val[n].equals("Valide")) cpt++;
                 n++;
             }
         }
-        if (cpt > (getListeVerificateur().length / 2)) {
-            this.setEtat("Valide");
+        //L'instruction est valide si plus de la moitié on validé
+        if (cpt > (listeVerificateur.length / 2)) {
+            this.etat = "Valide";
         } else {
-            this.setEtat("Non Valide");
+            this.etat = "Non Valide";
         }
-
-
     }
 
     @Override
