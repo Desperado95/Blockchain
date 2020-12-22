@@ -62,24 +62,6 @@ public class Data extends Transaction {
         }
     }
 
-    /**
-     * Fonction qui demande la validation ou non de la data et met à jour son état selon la majorité
-     */
-    void verifierTransaction(Machine[] listeVerificateur, String[] reponseVerificateur) {
-        int cpt = 0;
-        for (int i = 0; i < listeVerificateur.length; i++) {
-            if (listeVerificateur[i] instanceof Machine)
-                reponseVerificateur[i] = listeVerificateur[i].verifierTransaction(this);
-            if (reponseVerificateur[i].equals("Valide")) {
-                cpt++;
-            }
-        }
-        if (cpt > (listeVerificateur.length / 2)) {
-            setEtat("Valide");
-        } else {
-            setEtat("Non Valide");
-        }
-    }
 
     /**
      * @return string contenant le verificateur et leurs réponses
